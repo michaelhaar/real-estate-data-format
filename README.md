@@ -89,9 +89,17 @@ This repository proposes a standardized JSON data format especially designed for
           "type": "number",
           "description": "The number of bathrooms."
         },
-        "garages": {
-          "type": "number",
-          "description": "The number of garages."
+        "hasGarage": {
+          "type": "boolean",
+          "description": "Whether the property has a garage. (Definition: Garages are enclosed with solid walls, a roof, and at least one door)"
+        },
+        "hasCarport": {
+          "type": "boolean",
+          "description": "Whether the property has a carport. (Definition: Carports are made with a simple structure and a roof or overhead cover, usually built next to a house)"
+        },
+        "hasParkingSpace": {
+          "type": "boolean",
+          "description": "Whether the property has a parking space. Includes carports, garages and open parking spaces." //TODO rename to hasOpenParkingSpace?
         },
         "hasTerrace": {
           "type": "boolean",
