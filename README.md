@@ -65,7 +65,7 @@ This repository proposes a standardized JSON data format especially designed for
         }
       }
     },
-    "location": {
+    "coordinates": {
       "type": "object",
       "properties": {
         "latitude": {
@@ -92,15 +92,51 @@ This repository proposes a standardized JSON data format especially designed for
         "garages": {
           "type": "number",
           "description": "The number of garages."
+        },
+        "hasTerrace": {
+          "type": "boolean",
+          "description": "Whether the property has a terrace. (Definition: a flat area of stone or grass outside a house, where people can sit and relax)" // TODO double check?
+        },
+        "hasBalcony": {
+          "type": "boolean",
+          "description": "Whether the property has a balcony. (Definition: a platform enclosed by a wall or balustrade on the outside of a building, with access from an upper-floor window or door)"
+        },
+        "hasGarden": {
+          "type": "boolean",
+          "description": "Whether the property has a garden. (Definition: a piece of ground, often near a house, often used for growing flowers, fruit, or vegetables)"
+        },
+        "hasLoggia": {
+          "type": "boolean",
+          "description": "Whether the property has a loggia. (Definition: A room with 3 walls and one open side)"
+        },
+        "hasPool": {
+          "type": "boolean",
+          "description": "Whether the property has a swimming pool."
+        },
+        "hasStorageRoom": {
+          "type": "boolean",
+          "description": "Whether the property has a storage room." // TODO Add definition?
+        },
+        "isBarrierFree": {
+          "type": "boolean",
+          "description": "Whether the property is barrier-free. (e.g. wheelchair accessible, no stairs, etc.)"
+        },
+        "hasBuiltInKitchen": {
+          "type": "boolean",
+          "description": "Whether the property comes with a built-in kitchen."
+        },
+        "hasElevator": {
+          "type": "boolean",
+          "description": "Whether the property has an elevator. (usually in multi-story buildings)"
+        },
+        "hasAirConditioning": {
+          "type": "boolean",
+          "description": "Whether the property has air conditioning."
+        },
+        "hasBasementCompartment": {
+          "type": "boolean",
+          "description": "Whether the property has a basement compartment. (Definition: a room or space below the ground floor of a building, often used for storing things)"
         }
-        // "floorSize": {
-        //   "type": "number",
-        //   "description": "The floor size in square meters."
-        // },
-        // "landSize": {
-        //   "type": "number",
-        //   "description": "The land size in square meters."
-        // }
       }
     },
     "dateScraped": {
@@ -111,6 +147,16 @@ This repository proposes a standardized JSON data format especially designed for
     "scrapedFrom": {
       "type": "string",
       "description": "The url of the website the listing was scraped from."
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time", // TODO UTC String?
+      "description": "The date and time the listing was created."
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time", // TODO UTC String?
+      "description": "The date and time the listing was last updated."
     }
   }
 }
