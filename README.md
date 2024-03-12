@@ -78,9 +78,44 @@ This repository proposes a standardized JSON data format especially designed for
         }
       }
     },
+    "monetaryDetails": {
+      "type": "object",
+      "description": "Pricing information of the property. All prices are in the currency specified and include VAT.",
+      "properties": {
+        "purchasingPrice": {
+          "type": "number",
+          "description": "The price when buying/purchasing the property. The buyer is expected to pay this amount once to the seller. => Ownership gets transferred from the seller of the property to the buyer. If the property is not for sale, this field should be null."
+        },
+        "rent": {
+          "type": "number",
+          "description": "The monthly rent/lease of the property. The lessee is expected to pay this amount every month to the landlord. => Landlord stays the owner of the property, but the lessee gets the right to use the property. If the property is not for rent, this field should be null."
+        },
+        "currency": {
+          "type": "string",
+          "description": "The currency of the price."
+        },
+        "isCommissionFree": {
+          "type": "boolean",
+          "description": "Whether the property is commission-free for the buyer/lessee. (e.g. no real estate agent fees)"
+        },
+        "estMonthlyOperatingCosts": {
+          "type": "number",
+          "description": "The monthly operating costs of the property (estimated or from the previous year; e.g. heating, water, electricity, etc.). If the property is not for rent, this field should be null."
+        }
+      }
+    },
     "features": {
       "type": "object",
+      "description": "The features of the property.",
       "properties": {
+        "livingArea": {
+          "type": "number",
+          "description": "The area of the property that is used for living in square meters. E.g. living room, kitchen, bedrooms, bathrooms, etc. Excludes areas like balconies, terraces, garages, basements (unless they are used as living space.), staircases, hallways, etc."
+        },
+        "plotArea": {
+          "type": "number",
+          "description": "The plot area is the surface of the entire property in square meters. The key word here being “surface”, as it does not include underground surfaces or floors situated above the ground."
+        },
         "bedrooms": {
           "type": "number",
           "description": "The number of bedrooms."
@@ -145,6 +180,7 @@ This repository proposes a standardized JSON data format especially designed for
           "type": "boolean",
           "description": "Whether the property has a basement compartment. (Definition: a room or space below the ground floor of a building, often used for storing things)"
         }
+        // TODO heatingType, energyEfficiencyClass, etc.?
       }
     },
     "dateScraped": {
