@@ -1,5 +1,7 @@
 # `RealEstateListing` Format
 
+> The format is still in early development and may change frequently. Please use with caution.
+
 This repository proposes a **standardized JSON data format** especially **designed for real estate property listings**.
 
 The format is intended to be used for data exchange between different systems and applications, such as real estate websites, property management software, and other real estate-related services.
@@ -9,6 +11,10 @@ The format is intended to be used for data exchange between different systems an
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "description": "The version of the schema used for the listing."
+    },
     "listingId": {
       "type": "string",
       "description": "The unique identifier for the listing"
@@ -224,6 +230,13 @@ The format is intended to be used for data exchange between different systems an
   }
 }
 ```
+
+## Dev Notes
+
+- The format is based on the [JSON Schema](https://json-schema.org/) standard and is designed to be **flexible, extensible and easy to use**.
+- `RealEstateListing` objects are serializable and can be easily converted to and from JSON.
+- Objects can easily be converted to and from a tabular format (`flattenObject` or `unflattenObject`) for use in databases or spreadsheets.
+- Objects can also be validated against the schema to ensure that they are well-formed.
 
 ## Contributing
 
