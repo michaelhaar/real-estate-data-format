@@ -33,7 +33,7 @@ This repository proposes a standardized JSON data format especially designed for
       }
     },
     "propertyType": {
-      "type": "string", // TODO: Enum?
+      "type": "string", // TODO: Enum? (e.g. "apartment", "house", "commercial", "land", "garage", "parking", "other")
       "description": "The type of property"
     },
     "address": {
@@ -181,6 +181,25 @@ This repository proposes a standardized JSON data format especially designed for
           "description": "Whether the property has a basement compartment. (Definition: a room or space below the ground floor of a building, often used for storing things)"
         }
         // TODO heatingType, energyEfficiencyClass, etc.?
+      }
+    },
+    "contactDetails": {
+      "type": "object",
+      "description": "The contact details of the person or company responsible for the listing.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the person or company responsible for the listing."
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "The email address of the person or company responsible for the listing."
+        },
+        "phone": {
+          "type": "string",
+          "description": "The phone number of the person or company responsible for the listing."
+        }
       }
     },
     "dateScraped": {
