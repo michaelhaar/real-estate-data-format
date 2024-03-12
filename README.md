@@ -1,8 +1,8 @@
-# real-estate-data-format
+# `RealEstateListing` Format
 
-This repository proposes a standardized JSON data format especially designed for real estate properties.
+This repository proposes a **standardized JSON data format** especially **designed for real estate property listings**.
 
-## `RealEstateListing` JSON Format
+The format is intended to be used for data exchange between different systems and applications, such as real estate websites, property management software, and other real estate-related services.
 
 ```json
 {
@@ -224,3 +224,7 @@ This repository proposes a standardized JSON data format especially designed for
   }
 }
 ```
+
+## Contributing
+
+If you have any ideas for improvements or new features, feel free to open an issue or a pull request.
