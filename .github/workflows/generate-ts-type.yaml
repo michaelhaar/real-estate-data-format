@@ -13,6 +13,9 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v3
+        with:
+          # This is crucial to allow the workflow to push commits
+          persist-credentials: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -28,7 +31,7 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --global user.email "my_bot_account@gmail.com"
+          git config --global user.email "my_bot_account@example.com"
           git config --global user.name "my_bot_account"
           git add .
           git commit -m "autogenerate TS type"
