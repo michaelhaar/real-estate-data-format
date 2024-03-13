@@ -2,7 +2,7 @@
 
 > The format is still in early development and may change frequently. Please use with caution.
 
-This repository proposes a **standardized JSON data format** especially **designed for real estate property listings**.
+This repository proposes a **standardized JSON data format** especially **designed for real estate listings**.
 
 The format is intended to be used for data exchange between different systems and applications, such as real estate websites, property management software, and other real estate-related services.
 
@@ -13,7 +13,7 @@ The format is intended to be used for data exchange between different systems an
   "properties": {
     "schemaVersion": {
       "type": "string",
-      "enum": ["0.0.1"],
+      "enum": ["1.0.0"],
       "description": "The version of the schema used for the listing."
     },
     "listingId": {
@@ -238,6 +238,34 @@ The format is intended to be used for data exchange between different systems an
 - `RealEstateListing` objects are serializable and can be easily converted to and from JSON.
 - Objects can easily be converted to and from a tabular format (`flattenObject` or `unflattenObject`) for use in databases or spreadsheets.
 - Objects can also be validated against the schema to ensure that they are well-formed.
+
+## Usage
+
+Run the following command to download the latest json schema file:
+
+```bash
+# Download the latest schema file and save it as `schema.json`
+curl -o real-estate-listing-schema.json https://raw.githubusercontent.com/michaelhaar/real-estate-listing-format/main/schema.json
+```
+
+You can then use the schema file to validate your `RealEstateListing` objects.
+
+```javascript
+const Ajv = require("ajv");
+const schema = require("./real-estate-listing-schema.json");
+
+const ajv = new Ajv();
+const validate = ajv.compile(schema);
+
+const listing = {
+  // Your RealEstateListing object here
+};
+
+const valid = validate(listing);
+if (!valid) {
+  console.log(validate.errors);
+}
+```
 
 ## Contributing
 

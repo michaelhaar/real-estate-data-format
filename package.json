@@ -1,0 +1,19 @@
+{
+  "name": "real-estate-listing-format",
+  "version": "1.0.0",
+  "description": "A standardized data format especially designed for real estate listings",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelhaar/real-estate-listing-format.git"
+  },
+  "author": "Michael Haar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/michaelhaar/real-estate-listing-format/issues"
+  },
+  "homepage": "https://github.com/michaelhaar/real-estate-listing-format#readme"
+}
