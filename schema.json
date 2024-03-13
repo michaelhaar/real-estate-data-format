@@ -23,7 +23,7 @@
   "properties": {
     "schemaVersion": {
       "type": "string",
-      "enum": ["1.0.8"],
+      "enum": ["1.0.10"],
       "description": "The version of the schema used for the listing."
     },
     "listingId": {
