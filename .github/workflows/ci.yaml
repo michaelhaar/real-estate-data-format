@@ -28,4 +28,4 @@ jobs:
         run: npm run prettier:check
 
       - name: Run Unit Tests 🧪
-        run: npm run eslint:check
+        run: npm run test
