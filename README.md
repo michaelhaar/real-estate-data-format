@@ -256,8 +256,10 @@ You can use your favorite [JSON schema validator](https://json-schema.org/implem
 ```javascript
 import realEstateListingSchema from "real-estate-listing-schema";
 import Ajv from "ajv";
+import addFormats from "ajv-formats";
 
 const ajv = new Ajv();
+addFormats(ajv);
 const validate = ajv.compile(realEstateListingSchema);
 
 const data = {

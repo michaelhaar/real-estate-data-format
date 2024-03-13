@@ -4,7 +4,7 @@
   "description": "A standardized JSON schema especially designed for real estate listings",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/michaelhaar/real-estate-listing-schema/issues"
   },
-  "homepage": "https://github.com/michaelhaar/real-estate-listing-schema#readme"
+  "homepage": "https://github.com/michaelhaar/real-estate-listing-schema#readme",
+  "devDependencies": {
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1",
+    "vitest": "^1.3.1"
+  }
 }
