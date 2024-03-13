@@ -24,7 +24,7 @@ jobs:
         run: npm ci
 
       - name: Generate TS type 👾
-        run: npm run generate:type
+        run: npm run generate-ts-type
 
       - name: Commit and push changes
         run: |
