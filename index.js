@@ -1,1 +1,3 @@
-import realEstateListingSchema from "./schema.json";
+const realEstateListingSchema = require("./schema.json");
+
+module.exports = realEstateListingSchema;

@@ -254,11 +254,11 @@ npm install real-estate-listing-schema
 You can use your favorite [JSON schema validator](https://json-schema.org/implementations) to validate your data against the schema. Here's an example using [Ajv](https://ajv.js.org/):
 
 ```javascript
-import { RealEstateListingSchema } from "real-estate-listing-schema";
+import realEstateListingSchema from "real-estate-listing-schema";
 import Ajv from "ajv";
 
 const ajv = new Ajv();
-const validate = ajv.compile(RealEstateListingSchema);
+const validate = ajv.compile(realEstateListingSchema);
 
 const data = {
   // Your data here
