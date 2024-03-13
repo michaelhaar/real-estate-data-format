@@ -6,7 +6,8 @@
   "scripts": {
     "test": "vitest",
     "prettier:check": "prettier --check .",
-    "prettier:fix": "prettier --write ."
+    "prettier:fix": "prettier --write .",
+    "generate-ts-type": "node scripts/generate-ts-type.mjs"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   "devDependencies": {
     "ajv": "^8.12.0",
     "ajv-formats": "^2.1.1",
+    "json-schema-to-typescript": "^13.1.2",
     "prettier": "^3.2.5",
     "vitest": "^1.3.1"
   },

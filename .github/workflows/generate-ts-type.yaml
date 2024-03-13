@@ -1,0 +1,33 @@
+name: Generate TS Type
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  run:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    if: github.actor != 'my_bot_account'
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies 📦
+        run: npm ci
+
+      - name: Generate TS type 👾
+        run: npm run generate:type
+
+      - name: Commit and push changes
+        run: |
+          git add .
+          git commit -m "autogenerate TS type"
+          git push
