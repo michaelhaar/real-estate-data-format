@@ -28,6 +28,8 @@ jobs:
 
       - name: Commit and push changes
         run: |
+          git config --global user.email "my_bot_account@gmail.com"
+          git config --global user.name "my_bot_account"
           git add .
           git commit -m "autogenerate TS type"
           git push
