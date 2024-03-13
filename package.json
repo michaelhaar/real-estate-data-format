@@ -2,7 +2,7 @@
   "name": "real-estate-listing-schema",
   "version": "1.0.8",
   "description": "A standardized JSON schema especially designed for real estate listings",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "vitest"
   },
