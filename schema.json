@@ -1,10 +1,29 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "listingId",
+    "url",
+    "title",
+    "description",
+    "images",
+    "propertyType",
+    "address",
+    "coordinates",
+    "monetaryDetails",
+    "features",
+    "contactDetails",
+    "snapshotDate",
+    "scrapedFrom",
+    "createdAt",
+    "updatedAt"
+  ],
   "properties": {
     "schemaVersion": {
       "type": "string",
-      "enum": ["1.0.6"],
+      "enum": ["1.0.8"],
       "description": "The version of the schema used for the listing."
     },
     "listingId": {
@@ -36,6 +55,8 @@
     },
     "address": {
       "type": "object",
+      "additionalProperties": false,
+      "required": ["street", "city", "state", "postalCode", "country", "countryCode"],
       "properties": {
         "street": {
           "type": ["string", "null"],
@@ -65,6 +86,8 @@
     },
     "coordinates": {
       "type": "object",
+      "additionalProperties": false,
+      "required": ["latitude", "longitude"],
       "properties": {
         "latitude": {
           "type": ["number", "null"],
@@ -79,6 +102,8 @@
     "monetaryDetails": {
       "type": "object",
       "description": "Pricing information of the property. All prices are in the currency specified and include VAT.",
+      "additionalProperties": false,
+      "required": ["purchasingPrice", "rent", "currencyCode", "isCommissionFree", "estMonthlyOperatingCosts"],
       "properties": {
         "purchasingPrice": {
           "type": ["number", "null"],
@@ -105,6 +130,27 @@
     "features": {
       "type": "object",
       "description": "The features of the property. All features are nullable. If the availability of a feature is not known, the field should be null.",
+      "additionalProperties": false,
+      "required": [
+        "livingArea",
+        "plotArea",
+        "bedrooms",
+        "bathrooms",
+        "hasGarage",
+        "hasCarport",
+        "hasParkingSpace",
+        "hasTerrace",
+        "hasBalcony",
+        "hasGarden",
+        "hasLoggia",
+        "hasPool",
+        "hasStorageRoom",
+        "isBarrierFree",
+        "hasBuiltInKitchen",
+        "hasElevator",
+        "hasAirConditioning",
+        "hasBasementCompartment"
+      ],
       "properties": {
         "livingArea": {
           "type": ["number", "null"],
@@ -183,6 +229,8 @@
     "contactDetails": {
       "type": "object",
       "description": "The contact details of the person or company responsible for the listing.",
+      "additionalProperties": false,
+      "required": ["name", "email", "phone"],
       "properties": {
         "name": {
           "type": ["string", "null"],
