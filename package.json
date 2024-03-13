@@ -1,19 +1,19 @@
 {
-  "name": "real-estate-listing-format",
+  "name": "real-estate-listing-schema",
   "version": "1.0.0",
-  "description": "A standardized data format especially designed for real estate listings",
+  "description": "A standardized JSON schema especially designed for real estate listings",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/michaelhaar/real-estate-listing-format.git"
+    "url": "git+https://github.com/michaelhaar/real-estate-listing-schema.git"
   },
   "author": "Michael Haar",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/michaelhaar/real-estate-listing-format/issues"
+    "url": "https://github.com/michaelhaar/real-estate-listing-schema/issues"
   },
-  "homepage": "https://github.com/michaelhaar/real-estate-listing-format#readme"
+  "homepage": "https://github.com/michaelhaar/real-estate-listing-schema#readme"
 }
