@@ -1,10 +1,10 @@
 import { test, expect, describe } from "vitest";
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
-import realEstateTestListing from "./index";
+import { realEstateListingSchema } from "./index";
 
 const realEstateListing = {
-  schemaVersion: "1.0.8",
+  schemaVersion: "1.0.10",
   listingId: "<string>",
   url: "<string>",
   title: "<string>",
@@ -63,7 +63,7 @@ const realEstateListing = {
 
 const ajv = new Ajv();
 addFormats(ajv);
-const validate = ajv.compile(realEstateTestListing);
+const validate = ajv.compile(realEstateListingSchema);
 
 test("should pass", () => {
   const valid = validate(realEstateListing);
