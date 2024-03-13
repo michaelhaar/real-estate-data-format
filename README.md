@@ -19,7 +19,7 @@ The schema is intended to be used for data exchange between different systems an
 
 There are two ways to use the schema in your project:
 
-## via npm
+### via npm
 
 > Note: This is how I'm using it in my projects.
 
@@ -48,7 +48,7 @@ if (!valid) {
 }
 ```
 
-## via download
+### via download
 
 You can also download or copy&paste the schema file directly into your repository:
 
