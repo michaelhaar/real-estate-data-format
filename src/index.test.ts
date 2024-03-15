@@ -1,10 +1,9 @@
 import { test, expect, describe } from "vitest";
-import Ajv from "ajv";
+import Ajv, { JSONSchemaType } from "ajv";
 import addFormats from "ajv-formats";
-import { realEstateListingSchema } from "./index";
+import { RealEstateListing, realEstateListingSchema } from "./index";
 
 const realEstateListing = {
-  schemaVersion: "1.0.0",
   listingId: "<string>",
   url: "<string>",
   title: "<string>",
@@ -63,7 +62,7 @@ const realEstateListing = {
 
 const ajv = new Ajv();
 addFormats(ajv);
-const validate = ajv.compile(realEstateListingSchema);
+const validate = ajv.compile(realEstateListingSchema as JSONSchemaType<RealEstateListing>);
 
 test("should pass", () => {
   const valid = validate(realEstateListing);
@@ -91,7 +90,6 @@ describe("should fail", () => {
 
   describe("for missing required properties", () => {
     const testInputs = [
-      { ...realEstateListing, schemaVersion: undefined },
       { ...realEstateListing, listingId: undefined },
       { ...realEstateListing, url: undefined },
       { ...realEstateListing, title: undefined },

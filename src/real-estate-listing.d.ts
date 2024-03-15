@@ -7,9 +7,12 @@
 
 export interface RealEstateListing {
   /**
-   * The version of the schema used for the listing.
+   * The version of the schema used for the listing. Given a version number MAJOR.MINOR.PATCH, we increment the:
+   * - MAJOR version when we make incompatible API changes (e.g. add/remove/rename properties)
+   * - MINOR version when we add functionality in a backward compatible manner (e.g. add additional type)
+   * - PATCH version when we make backward compatible bug fixes (e.g.: update descriptions)
    */
-  schemaVersion: "1.0.0";
+  schemaVersion?: "1.0.13" | null;
   /**
    * The unique identifier for the listing
    */

@@ -3,7 +3,6 @@
   "type": "object",
   "additionalProperties": false,
   "required": [
-    "schemaVersion",
     "listingId",
     "url",
     "title",
@@ -22,9 +21,10 @@
   ],
   "properties": {
     "schemaVersion": {
-      "type": "string",
-      "enum": ["1.0.0"],
-      "description": "The version of the schema used for the listing."
+      "type": ["string", "null"],
+      "enum": ["1.0.13"],
+      "description": "The version of the schema used for the listing. Given a version number MAJOR.MINOR.PATCH, we increment the:\n- MAJOR version when we make incompatible API changes (e.g. add/remove/rename properties)\n- MINOR version when we add functionality in a backward compatible manner (e.g. add additional type)\n- PATCH version when we make backward compatible bug fixes (e.g.: update descriptions)",
+      "nullable": true
     },
     "listingId": {
       "type": ["string", "null"],
