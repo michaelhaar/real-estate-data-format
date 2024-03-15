@@ -4,7 +4,7 @@ import addFormats from "ajv-formats";
 import { realEstateListingSchema } from "./index";
 
 const realEstateListing = {
-  schemaVersion: "1.0.10",
+  schemaVersion: "1.0.0",
   listingId: "<string>",
   url: "<string>",
   title: "<string>",

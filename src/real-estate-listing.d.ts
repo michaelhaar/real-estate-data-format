@@ -5,11 +5,11 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export interface Schema {
+export interface RealEstateListing {
   /**
    * The version of the schema used for the listing.
    */
-  schemaVersion: "1.0.10";
+  schemaVersion: "1.0.0";
   /**
    * The unique identifier for the listing
    */
