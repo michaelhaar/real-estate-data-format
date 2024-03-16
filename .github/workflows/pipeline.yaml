@@ -63,7 +63,7 @@ jobs:
           dry-run: false
 
       - name: (CD) Post-publish
-        if: if: ${{ env.shouldRunCD == 'true' && steps.publish.outputs.type }}
+        if: ${{ env.shouldRunCD == 'true' && steps.publish.outputs.type }}
         run: |
           echo "Published ${{ steps.publish.outputs.type }} version: ${{ steps.publish.outputs.version }}"
 
