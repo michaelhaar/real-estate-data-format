@@ -15,7 +15,8 @@
     "test": "vitest",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
-    "generate-ts-type": "node scripts/generate-ts-type.mjs"
+    "generate-ts-type": "node scripts/generate-ts-type.mjs",
+    "version-sync:check": "node scripts/version-sync-check.mjs"
   },
   "devDependencies": {
     "ajv": "^8.12.0",
