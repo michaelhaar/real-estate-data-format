@@ -17,46 +17,35 @@ The schema is intended to be used for data exchange between different systems an
 
 ## Usage
 
-There are two ways to use the schema in your project:
+There are many ways to use the schema in your project. E.g.:
 
-## via npm
+### via download
 
-> Note: This is how I'm using it in my projects.
+The most straight forward way is to download or copy&paste the schema file schema.json directly into your project:
+
+```bash
+curl -o schema.json https://raw.githubusercontent.com/michaelhaar/real-estate-listing-schema/main/schema.json
+```
+
+and then use your favorite [JSON schema validator](https://json-schema.org/implementations) to validate your data against the schema.
+
+### via npm
+
+For convenience, the schema is also published as an [npm package](https://www.npmjs.com/package/real-estate-listing-schema). You can install it via npm:
 
 ```bash
 npm install real-estate-listing-schema
 ```
 
-You can use your favorite [JSON schema validator](https://json-schema.org/implementations) to validate your data against the schema. Here's an example using [Ajv](https://ajv.js.org/):
+and then use it in your project like this:
 
 ```javascript
-import realEstateListingSchema from "real-estate-listing-schema";
-import Ajv from "ajv";
-import addFormats from "ajv-formats";
+import { realEstateListingSchema, RealEstateListing } from "real-estate-listing-schema";
 
-const ajv = new Ajv();
-addFormats(ajv);
-const validate = ajv.compile(realEstateListingSchema);
-
-const data = {
-  // Your data here
-};
-
-const valid = validate(data);
-if (!valid) {
-  console.log(validate.errors);
-}
+// use your favorite JSON schema validator to validate your data against the schema
 ```
 
-## via download
-
-You can also download or copy&paste the schema file directly into your repository:
-
-```bash
-curl -o real-estate-listing-schema.json https://raw.githubusercontent.com/michaelhaar/real-estate-listing-schema/main/schema.json
-```
-
-and then use your favorite [JSON schema validator](https://json-schema.org/implementations) to validate your data against the schema.
+The [index.test.ts](https://github.com/michaelhaar/real-estate-listing-schema/blob/main/src/index.test.ts) file contains a simple example of how to use the schema with the [ajv](https://www.npmjs.com/package/ajv) JSON schema validator.
 
 ## Contributing
 
