@@ -53,3 +53,4 @@ jobs:
             New version: ${{ steps.publish.outputs.version }}
           draft: false
           prerelease: false
+          token: ${{ secrets.PAT }}
