@@ -115,7 +115,3 @@ The [index.test.ts](https://github.com/michaelhaar/real-estate-listing-schema/bl
 ## Versioning
 
 This repository follows the [Semantic Versioning](https://semver.org/) standard.
-
-## Contributing
-
-If you have any ideas for improvements or new features, feel free to open an issue or a pull request.
