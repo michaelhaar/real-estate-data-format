@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "1.0.30",
+  "$id": "2.0.0",
+  "title": "RealEstateListing",
   "type": "object",
-  "additionalProperties": false,
   "required": [
     "listingId",
     "url",
@@ -17,7 +17,7 @@
     "contactDetails",
     "snapshotDate",
     "scrapedFrom",
-    "createdAt",
+    "publishedAt",
     "updatedAt"
   ],
   "properties": {
@@ -50,7 +50,6 @@
     },
     "address": {
       "type": "object",
-      "additionalProperties": false,
       "required": ["street", "city", "state", "postalCode", "country", "countryCode"],
       "properties": {
         "street": {
@@ -81,7 +80,6 @@
     },
     "coordinates": {
       "type": "object",
-      "additionalProperties": false,
       "required": ["latitude", "longitude"],
       "properties": {
         "latitude": {
@@ -97,7 +95,6 @@
     "monetaryDetails": {
       "type": "object",
       "description": "Pricing information of the property. All prices are in the currency specified and include VAT.",
-      "additionalProperties": false,
       "required": ["purchasingPrice", "rent", "currencyCode", "isCommissionFree", "estMonthlyOperatingCosts"],
       "properties": {
         "purchasingPrice": {
@@ -125,10 +122,10 @@
     "features": {
       "type": "object",
       "description": "The features of the property. All features are nullable. If the availability of a feature is not known, the field should be null.",
-      "additionalProperties": false,
       "required": [
         "livingArea",
         "plotArea",
+        "yearBuilt",
         "bedrooms",
         "bathrooms",
         "hasGarage",
@@ -154,6 +151,10 @@
         "plotArea": {
           "type": ["number", "null"],
           "description": "The plot area is the surface of the entire property in square meters. The key word here being “surface”, as it does not include underground surfaces or floors situated above the ground."
+        },
+        "yearBuilt": {
+          "type": ["number", "null"],
+          "description": "The year the property was built."
         },
         "bedrooms": {
           "type": ["number", "null"],
@@ -224,7 +225,6 @@
     "contactDetails": {
       "type": "object",
       "description": "The contact details of the person or company responsible for the listing.",
-      "additionalProperties": false,
       "required": ["name", "email", "phone"],
       "properties": {
         "name": {
@@ -251,10 +251,10 @@
       "type": ["string", "null"],
       "description": "The url of the website the listing was scraped from."
     },
-    "createdAt": {
+    "publishedAt": {
       "type": ["string", "null"],
       "format": "date-time",
-      "description": "The date and time the listing was created."
+      "description": "The date and time the listing was published."
     },
     "updatedAt": {
       "type": ["string", "null"],

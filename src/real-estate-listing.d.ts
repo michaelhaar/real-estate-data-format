@@ -101,6 +101,10 @@ export interface RealEstateListing {
      */
     plotArea: number | null;
     /**
+     * The year the property was built.
+     */
+    yearBuilt: number | null;
+    /**
      * The number of bedrooms.
      */
     bedrooms: number | null;
@@ -191,9 +195,9 @@ export interface RealEstateListing {
    */
   scrapedFrom: string | null;
   /**
-   * The date and time the listing was created.
+   * The date and time the listing was published.
    */
-  createdAt: string | null;
+  publishedAt: string | null;
   /**
    * The date and time the listing was last updated.
    */

@@ -3,7 +3,7 @@ import Ajv, { JSONSchemaType } from "ajv";
 import addFormats from "ajv-formats";
 import { RealEstateListing, realEstateListingSchema } from "./index";
 
-const ajv = new Ajv();
+const ajv = new Ajv({ removeAdditional: "all" });
 addFormats(ajv);
 const validate = ajv.compile(realEstateListingSchema as JSONSchemaType<RealEstateListing>);
 
@@ -36,6 +36,7 @@ const realEstateListing = {
   features: {
     livingArea: 247,
     plotArea: 185,
+    yearBuilt: 2022,
     bedrooms: 23,
     bathrooms: 24,
     hasGarage: true,
@@ -60,7 +61,7 @@ const realEstateListing = {
   },
   snapshotDate: "2022-03-14T01:59:59Z",
   scrapedFrom: "<string>",
-  createdAt: "2022-03-14T01:59:59Z",
+  publishedAt: "2022-03-14T01:59:59Z",
   updatedAt: "2022-03-14T01:59:59Z",
 };
 
@@ -69,25 +70,26 @@ test("should pass", () => {
   expect(valid).toBe(true);
 });
 
-describe("should fail", () => {
-  describe("for additional properties", () => {
-    const testInputs = [
-      { ...realEstateListing, additionalProp: 1 },
-      { ...realEstateListing, address: { ...realEstateListing.address, additionalProp: 1 } },
-      { ...realEstateListing, coordinates: { ...realEstateListing.coordinates, additionalProp: 1 } },
-      { ...realEstateListing, monetaryDetails: { ...realEstateListing.monetaryDetails, additionalProp: 1 } },
-      { ...realEstateListing, features: { ...realEstateListing.features, additionalFeature: 1 } },
-      { ...realEstateListing, contactDetails: { ...realEstateListing.contactDetails, additionalProp: 1 } },
-    ];
+describe("should remove additional properties", () => {
+  const testInputs = [
+    { ...realEstateListing, additionalProp: 1 },
+    { ...realEstateListing, address: { ...realEstateListing.address, additionalProp: 1 } },
+    { ...realEstateListing, coordinates: { ...realEstateListing.coordinates, additionalProp: 1 } },
+    { ...realEstateListing, monetaryDetails: { ...realEstateListing.monetaryDetails, additionalProp: 1 } },
+    { ...realEstateListing, features: { ...realEstateListing.features, additionalFeature: 1 } },
+    { ...realEstateListing, contactDetails: { ...realEstateListing.contactDetails, additionalProp: 1 } },
+  ];
 
-    testInputs.forEach((input, index) => {
-      test(`testInput #${index}`, () => {
-        const valid = validate(input);
-        expect(valid).toBe(false);
-      });
+  testInputs.forEach((input, index) => {
+    test(`testInput #${index}`, () => {
+      const valid = validate(input);
+      expect(valid).toBe(true);
+      expect(input).toEqual(realEstateListing);
     });
   });
+});
 
+describe("should fail", () => {
   describe("for missing required properties", () => {
     const testInputs = [
       { ...realEstateListing, listingId: undefined },
@@ -103,7 +105,7 @@ describe("should fail", () => {
       { ...realEstateListing, contactDetails: undefined },
       { ...realEstateListing, snapshotDate: undefined },
       { ...realEstateListing, scrapedFrom: undefined },
-      { ...realEstateListing, createdAt: undefined },
+      { ...realEstateListing, publishedAt: undefined },
       { ...realEstateListing, updatedAt: undefined },
       { ...realEstateListing, address: { ...realEstateListing.address, street: undefined } },
       { ...realEstateListing, monetaryDetails: { ...realEstateListing.monetaryDetails, purchasingPrice: undefined } },
@@ -120,7 +122,6 @@ describe("should fail", () => {
 
   describe("for invalid property types", () => {
     const testInputs = [
-      { ...realEstateListing, schemaVersion: 1 },
       { ...realEstateListing, listingId: 1 },
       { ...realEstateListing, url: 1 },
       { ...realEstateListing, title: 1 },
@@ -134,7 +135,7 @@ describe("should fail", () => {
       { ...realEstateListing, contactDetails: 1 },
       { ...realEstateListing, snapshotDate: 1 },
       { ...realEstateListing, scrapedFrom: 1 },
-      { ...realEstateListing, createdAt: 1 },
+      { ...realEstateListing, publishedAt: 1 },
       { ...realEstateListing, updatedAt: 1 },
       { ...realEstateListing, address: { ...realEstateListing.address, street: 1 } },
       { ...realEstateListing, monetaryDetails: { ...realEstateListing.monetaryDetails, purchasingPrice: "1" } },
