@@ -7,69 +7,14 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  ci:
+  cicd:
     runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "npm"
-
-      - name: Install dependencies 📦
-        run: npm ci
-
-      - name: Run Prettier 🎨
-        run: npm run prettier:check
-
-      - name: Run Version Check 🔄
-        run: npm run version:check
-
-      - name: Run Unit Tests 🧪
-        run: npm run test
-
-  should-run-cd:
-    runs-on: ubuntu-latest
-    needs: ci
     steps:
       - name: Check out code
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
 
-      - name: Is Push to Main
-        run: |
-          if [ ${{ github.ref }} == 'refs/heads/main' ]; then
-            echo "isPushToMain=true" >> $GITHUB_ENV
-          else
-            echo "isPushToMain=false" >> $GITHUB_ENV
-          fi
-      - name: Is Package.json Changed
-        run: |
-          if git diff --name-only HEAD~1 HEAD | grep -q "package.json"; then
-            echo "isPackageJsonChanged=true" >> $GITHUB_ENV
-          else
-            echo "isPackageJsonChanged=false" >> $GITHUB_ENV
-          fi
-      - name: Set Outcome
-        run: |
-          if [ ${{ env.isPushToMain }} == 'true' ] && [ ${{ env.isPackageJsonChanged }} == 'true' ]; then
-            echo "shouldRunCD=true" >> $GITHUB_OUTPUT
-          else
-            echo "shouldRunCD=false" >> $GITHUB_OUTPUT
-          fi
-
-  cd:
-    runs-on: ubuntu-latest
-    needs: should-run-cd
-    if: ${{ needs.should-run-cd.outputs.shouldRunCD == 'true' }}
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v4
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -79,29 +24,57 @@ jobs:
       - name: Install dependencies 📦
         run: npm ci
 
-      - name: Build
+      - name: (CI) Run Prettier 🎨
+        run: npm run prettier:check
+
+      - name: (CI) Run Version Check 🔄
+        run: npm run version:check
+
+      - name: (CI) Run Unit Tests 🧪
+        run: npm run test
+
+      - name: (CD) Is Push to Main
+        run: |
+          if [ ${{ github.ref }} == 'refs/heads/main' ]; then
+            echo "shouldRunCD=true" >> $GITHUB_ENV
+          else
+            echo "shouldRunCD=false" >> $GITHUB_ENV
+          fi
+
+      - name: (CD) Is Package.json Changed
+        if: ${{ env.shouldRunCD == 'true' }}
+        run: |
+          if git diff --name-only HEAD~1 HEAD | grep -q "package.json"; then
+            echo "shouldRunCD=true" >> $GITHUB_ENV
+          else
+            echo "shouldRunCD=false" >> $GITHUB_ENV
+          fi
+
+      - name: (CD) Build
+        if: ${{ env.shouldRunCD == 'true' }}
         run: npm run build
 
-      - id: publish
-        name: Publish to NPM
+      - name: (CD) Publish to NPM
+        if: ${{ env.shouldRunCD == 'true' }}
+        id: publish
         uses: JS-DevTools/npm-publish@v3
         with:
           token: ${{ secrets.NPM_TOKEN }}
           dry-run: false
 
-      - name: Post-publish
-        if: steps.publish.outputs.type
+      - name: (CD) Post-publish
+        if: if: ${{ env.shouldRunCD == 'true' && steps.publish.outputs.type }}
         run: |
           echo "Published ${{ steps.publish.outputs.type }} version: ${{ steps.publish.outputs.version }}"
 
-      - name: Publish skipped
-        if: steps.publish.outputs.type == ''
+      - name: (CD) Publish skipped
+        if: ${{ env.shouldRunCD == 'true' && !steps.publish.outputs.type }}
         run: |
           echo "Version in package.json has not changed. Skipping."
           exit 0
 
-      - name: Create Github release
-        if: steps.publish.outputs.type
+      - name: (CD) Create Github release
+        if: ${{ env.shouldRunCD == 'true' && steps.publish.outputs.type }}
         uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ steps.publish.outputs.version }}
