@@ -5,7 +5,7 @@ import { importJson } from "./utils.mjs";
 const { json: packageJson } = importJson("../package.json");
 const { json: schemaJson } = importJson("../schema.json");
 
-if (packageJson.version !== schemaJson.properties.schemaVersion.enum[0]) {
+if (packageJson.version !== schemaJson.$id) {
   console.error("❌ Versions in package.json and schema.json are out of sync");
   process.exit(1);
 }

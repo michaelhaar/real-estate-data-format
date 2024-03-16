@@ -13,7 +13,7 @@ const { json: packageJson, absolutePath: packageJsonPath } = importJson("../pack
 const { json: schemaJson, absolutePath: schemaJsonPath } = importJson("../schema.json");
 
 packageJson.version = newVersion;
-schemaJson.properties.schemaVersion.enum[0] = newVersion;
+schemaJson.$id = newVersion;
 
 fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
 fs.writeFileSync(schemaJsonPath, JSON.stringify(schemaJson, null, 2));
