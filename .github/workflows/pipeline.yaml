@@ -57,17 +57,15 @@ jobs:
       - name: Set Outcome
         run: |
           if [ ${{ env.isPushToMain }} == 'true' ] && [ ${{ env.isPackageJsonChanged }} == 'true' ]; then
-            echo "hello"
             echo "shouldRunCD=true" >> $GITHUB_OUTPUT
           else
-            echo "world"
             echo "shouldRunCD=false" >> $GITHUB_OUTPUT
           fi
 
   cd:
     runs-on: ubuntu-latest
     needs: should-run-cd
-    if: needs.should-run-cd.outputs.shouldRunCD == 'true'
+    if: ${{ needs.should-run-cd.outputs.shouldRunCD == 'true' }}
     steps:
       - name: Check out code
         uses: actions/checkout@v4
