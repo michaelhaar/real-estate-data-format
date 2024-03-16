@@ -47,6 +47,10 @@ import { realEstateListingSchema, RealEstateListing } from "real-estate-listing-
 
 The [index.test.ts](https://github.com/michaelhaar/real-estate-listing-schema/blob/main/src/index.test.ts) file contains a simple example of how to use the schema with the [ajv](https://www.npmjs.com/package/ajv) JSON schema validator.
 
+## Versioning
+
+The schema follows the [Semantic Versioning](https://semver.org/) standard.
+
 ## Contributing
 
 If you have any ideas for improvements or new features, feel free to open an issue or a pull request.
