@@ -7,8 +7,7 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  run:
-    timeout-minutes: 15
+  setup:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,6 +23,10 @@ jobs:
       - name: Install dependencies 📦
         run: npm ci
 
+  ci:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
       - name: Run Prettier 🎨
         run: npm run prettier:check
 
@@ -32,3 +35,65 @@ jobs:
 
       - name: Run Unit Tests 🧪
         run: npm run test
+
+  should-run-cd:
+    runs-on: ubuntu-latest
+    needs: ci
+    steps:
+      - name: Is Push to Main
+        run:
+          if [ ${{ github.ref }} == 'refs/heads/main' ]; then
+            echo "isPushToMain=true" >> $GITHUB_ENV
+          fi
+        
+      - name: Check for changes in package.json
+        run: |
+          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q "package.json"; then
+            echo "isPackageJsonChanged=true" >> $GITHUB_ENV
+          fi
+
+      - name: Set outcome
+        run: |
+          if [ ${{ env.isPushToMain }} == 'true' ] && [ ${{ env.isPackageJsonChanged }} == 'true' ]; then
+            echo "shouldRunCd=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "shouldRunCd=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  cd:
+    runs-on: ubuntu-latest
+    needs: should-run-cd
+    if: needs.should-run-cd.outputs.shouldRunCd == 'true'
+    steps:
+      - name: Build
+          run: npm run build
+
+      - id: publish
+        name: Publish to NPM
+        uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          dry-run: false
+
+      - name: Post-publish
+        if: steps.publish.outputs.type
+        run: |
+          echo "Published ${{ steps.publish.outputs.type }} version: ${{ steps.publish.outputs.version }}"
+
+      - name: Publish skipped
+        if: steps.publish.outputs.type == ''
+        run: |
+          echo "Version in package.json has not changed. Skipping."
+          exit 0
+
+      - name: Create Github release
+        if: steps.publish.outputs.type
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.publish.outputs.version }}
+          name: v${{ steps.publish.outputs.version }}
+          body: |
+            New version: ${{ steps.publish.outputs.version }}
+          draft: false
+          prerelease: false
+          token: ${{ secrets.PAT }}
