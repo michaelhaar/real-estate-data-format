@@ -3,6 +3,10 @@ import Ajv, { JSONSchemaType } from "ajv";
 import addFormats from "ajv-formats";
 import { RealEstateListing, realEstateListingSchema } from "./index";
 
+const ajv = new Ajv();
+addFormats(ajv);
+const validate = ajv.compile(realEstateListingSchema as JSONSchemaType<RealEstateListing>);
+
 const realEstateListing = {
   listingId: "<string>",
   url: "<string>",
@@ -59,10 +63,6 @@ const realEstateListing = {
   createdAt: "2022-03-14T01:59:59Z",
   updatedAt: "2022-03-14T01:59:59Z",
 };
-
-const ajv = new Ajv();
-addFormats(ajv);
-const validate = ajv.compile(realEstateListingSchema as JSONSchemaType<RealEstateListing>);
 
 test("should pass", () => {
   const valid = validate(realEstateListing);
