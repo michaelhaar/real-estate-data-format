@@ -57,8 +57,10 @@ jobs:
       - name: Set Outcome
         run: |
           if [ ${{ env.isPushToMain }} == 'true' ] && [ ${{ env.isPackageJsonChanged }} == 'true' ]; then
+            echo "hello"
             echo "shouldRunCD=true" >> $GITHUB_OUTPUT
           else
+            echo "world"
             echo "shouldRunCD=false" >> $GITHUB_OUTPUT
           fi
 
