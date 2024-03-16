@@ -27,8 +27,8 @@ jobs:
       - name: Run Prettier 🎨
         run: npm run prettier:check
 
-      - name: Run Version Sync Check 🔄
-        run: npm run version-sync:check
+      - name: Run Version Check 🔄
+        run: npm run version:check
 
       - name: Run Unit Tests 🧪
         run: npm run test
