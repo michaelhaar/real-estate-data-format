@@ -1,9 +1,9 @@
-name: Create Release
+name: CD Pipeline
 
 on:
   push:
     branches:
-      - "master"
+      - main
     paths:
       - package.json
 
