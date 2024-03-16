@@ -21,3 +21,4 @@ If you have any ideas for improvements or new features, feel free to open an iss
 - Wait for the pipeline to succeed
 - `Squash and Merge` the pull request
   - pipeline should run again and automatically publish the new version to npm and create a new release on GitHub 💪
+  - (automatic deployment is only triggered when the version in `package.json` has been updated)
