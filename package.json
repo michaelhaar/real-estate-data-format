@@ -1,6 +1,6 @@
 {
   "name": "real-estate-listing-schema",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "description": "A standardized JSON schema especially designed for real estate listings",
   "author": "Michael Haar",
   "license": "MIT",
