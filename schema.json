@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "1.0.14",
+  "$id": "1.0.15",
   "type": "object",
   "additionalProperties": false,
   "required": [
