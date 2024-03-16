@@ -39,16 +39,18 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Is Push to Main
-        run: if [ ${{ github.ref }} == 'refs/heads/main' ]; then
-          echo "isPushToMain=true" >> $GITHUB_ENV
+        run: |
+          if [ ${{ github.ref }} == 'refs/heads/main' ]; then
+            echo "isPushToMain=true" >> $GITHUB_ENV
           else
-          echo "isPushToMain=false" >> $GITHUB_ENV
+            echo "isPushToMain=false" >> $GITHUB_ENV
           fi
       - name: Is Package.json Changed
-        run: if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q "package.json"; then
-          echo "isPackageJsonChanged=true" >> $GITHUB_ENV
+        run: |
+          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q "package.json"; then
+            echo "isPackageJsonChanged=true" >> $GITHUB_ENV
           else
-          echo "isPackageJsonChanged=false" >> $GITHUB_ENV
+            echo "isPackageJsonChanged=false" >> $GITHUB_ENV
           fi
       - name: Set Outcome
         run: |
