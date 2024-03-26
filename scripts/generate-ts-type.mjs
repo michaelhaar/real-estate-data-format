@@ -6,6 +6,4 @@ import { importJson } from "./utils.mjs";
 
 const { json } = importJson("../schema.json");
 
-compile(json, "RealEstateListing", { additionalProperties: false }).then((ts) =>
-  fs.writeFileSync("src/real-estate-listing.d.ts", ts),
-);
+compile(json, "RealEstateListing").then((ts) => fs.writeFileSync("src/real-estate-listing.d.ts", ts));

@@ -52,6 +52,7 @@ export interface RealEstateListing {
      * The ISO 3166-1 alpha-3 country code. If the country code is not available, this field should be null.
      */
     countryCode: string | null;
+    [k: string]: unknown;
   };
   coordinates: {
     /**
@@ -62,6 +63,7 @@ export interface RealEstateListing {
      * The longitude of the location. If the longitude is not available, this field should be null.
      */
     longitude: number | null;
+    [k: string]: unknown;
   };
   /**
    * Pricing information of the property. All prices are in the currency specified and include VAT.
@@ -87,6 +89,7 @@ export interface RealEstateListing {
      * The monthly operating costs of the property (estimated or from the previous year; e.g. heating, water, electricity, etc.). If the property is not for rent, this field should be null.
      */
     estMonthlyOperatingCosts: number | null;
+    [k: string]: unknown;
   };
   /**
    * The features of the property. All features are nullable. If the availability of a feature is not known, the field should be null.
@@ -168,6 +171,7 @@ export interface RealEstateListing {
      * Whether the property has a basement compartment. (Definition: a room or space below the ground floor of a building, often used for storing things)
      */
     hasBasementCompartment: boolean | null;
+    [k: string]: unknown;
   };
   /**
    * The contact details of the person or company responsible for the listing.
@@ -185,6 +189,7 @@ export interface RealEstateListing {
      * The phone number of the person or company responsible for the listing.
      */
     phone: string | null;
+    [k: string]: unknown;
   };
   /**
    * The date and time the listing was scraped/snapshotted.
@@ -202,4 +207,5 @@ export interface RealEstateListing {
    * The date and time the listing was last updated.
    */
   updatedAt: string | null;
+  [k: string]: unknown;
 }
