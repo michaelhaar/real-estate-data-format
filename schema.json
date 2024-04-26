@@ -45,9 +45,9 @@
       }
     },
     "propertyType": {
-      "type": "string",
-      "enum": ["house", "apartment", "land", "unknown"],
-      "description": "The type of property"
+      "type": ["string", "null"],
+      "enum": ["house", "apartment", "land"],
+      "description": "The type of property. Null if the property type is not known or other."
     },
     "address": {
       "type": "object",

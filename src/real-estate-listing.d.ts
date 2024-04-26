@@ -24,9 +24,9 @@ export interface RealEstateListing {
   description: string;
   images: string[];
   /**
-   * The type of property
+   * The type of property. Null if the property type is not known or other.
    */
-  propertyType: "house" | "apartment" | "land" | "unknown";
+  propertyType: ("house" | "apartment" | "land") | null;
   address: {
     /**
      * Street name (in practice may also contain street number). If the street name is not available, this field should be null.
