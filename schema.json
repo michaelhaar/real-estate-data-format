@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "2.1.0",
+  "$id": "2.2.0",
   "title": "RealEstateListing",
   "type": "object",
   "required": [
@@ -45,9 +45,9 @@
       }
     },
     "propertyType": {
-      "type": "string",
-      "enum": ["house", "apartment", "condo", "unknown"],
-      "description": "The type of property"
+      "type": ["string", "null"],
+      "enum": ["house", "apartment", "land"],
+      "description": "The type of property. Null if the property type is not known or other."
     },
     "address": {
       "type": "object",
