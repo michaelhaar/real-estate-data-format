@@ -26,7 +26,7 @@ export interface RealEstateListing {
   /**
    * The type of property
    */
-  propertyType: "house" | "apartment" | "condo" | "unknown";
+  propertyType: "house" | "apartment" | "land" | "unknown";
   address: {
     /**
      * Street name (in practice may also contain street number). If the street name is not available, this field should be null.
