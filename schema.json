@@ -96,15 +96,31 @@
     "monetaryDetails": {
       "type": "object",
       "description": "Pricing information of the property. All prices are in the currency specified and include VAT.",
-      "required": ["purchasingPrice", "rent", "currencyCode", "isCommissionFree", "estMonthlyOperatingCosts"],
+      "required": [
+        "purchasingPrice",
+        "previousPurchasingPrice",
+        "rent",
+        "previousRent",
+        "currencyCode",
+        "isCommissionFree",
+        "estMonthlyOperatingCosts"
+      ],
       "properties": {
         "purchasingPrice": {
           "type": ["number", "null"],
           "description": "The price when buying/purchasing the property. The buyer is expected to pay this amount once to the seller. => Ownership gets transferred from the seller of the property to the buyer. If the property is not for sale, this field should be null."
         },
+        "previousPurchasingPrice": {
+          "type": ["number", "null"],
+          "description": "The previous purchasingPrice. Can be used for price history."
+        },
         "rent": {
           "type": ["number", "null"],
           "description": "The monthly rent/lease of the property. The lessee is expected to pay this amount every month to the landlord. => Landlord stays the owner of the property, but the lessee gets the right to use the property. If the property is not for rent, this field should be null."
+        },
+        "previousRent": {
+          "type": ["number", "null"],
+          "description": "The previous rent. Can be used for price history."
         },
         "currencyCode": {
           "type": "string",
