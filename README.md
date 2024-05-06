@@ -24,7 +24,9 @@ Here is an example of a valid `RealEstateListing` object:
   "coordinates": { "latitude": 47.05104, "longitude": 15.44788 },
   "monetaryDetails": {
     "purchasingPrice": 169000,
+    "previousPurchasingPrice": null,
     "rent": null,
+    "previousRent": null,
     "currencyCode": "EUR",
     "isCommissionFree": true,
     "estMonthlyOperatingCosts": null
