@@ -72,9 +72,17 @@ export interface RealEstateListing {
      */
     purchasingPrice: number | null;
     /**
+     * The previous purchasingPrice. Can be used for price history.
+     */
+    previousPurchasingPrice: number | null;
+    /**
      * The monthly rent/lease of the property. The lessee is expected to pay this amount every month to the landlord. => Landlord stays the owner of the property, but the lessee gets the right to use the property. If the property is not for rent, this field should be null.
      */
     rent: number | null;
+    /**
+     * The previous rent. Can be used for price history.
+     */
+    previousRent: number | null;
     /**
      * The ISO 4217 currency code of the prices. (e.g. EUR, USD, GBP, etc.)
      */
