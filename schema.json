@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "2.3.0",
+  "$id": "2.4.0",
   "title": "RealEstateListing",
   "type": "object",
   "required": [
@@ -99,8 +99,10 @@
       "required": [
         "purchasingPrice",
         "previousPurchasingPrice",
+        "purchasingPricePerM2",
         "rent",
         "previousRent",
+        "rentPerM2",
         "currencyCode",
         "isCommissionFree",
         "estMonthlyOperatingCosts"
@@ -114,6 +116,10 @@
           "type": ["number", "null"],
           "description": "The previous purchasingPrice. Can be used for price history."
         },
+        "purchasingPricePerM2": {
+          "type": ["number", "null"],
+          "description": "The price per square meter when buying/purchasing the property. livingArea for apartments/houses, plotArea for land, otherwise null."
+        },
         "rent": {
           "type": ["number", "null"],
           "description": "The monthly rent/lease of the property. The lessee is expected to pay this amount every month to the landlord. => Landlord stays the owner of the property, but the lessee gets the right to use the property. If the property is not for rent, this field should be null."
@@ -121,6 +127,10 @@
         "previousRent": {
           "type": ["number", "null"],
           "description": "The previous rent. Can be used for price history."
+        },
+        "rentPerM2": {
+          "type": ["number", "null"],
+          "description": "The monthly rent per square meter of the property. livingArea for apartments/houses, plotArea for land, otherwise null."
         },
         "currencyCode": {
           "type": "string",
