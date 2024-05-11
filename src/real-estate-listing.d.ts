@@ -76,6 +76,10 @@ export interface RealEstateListing {
      */
     previousPurchasingPrice: number | null;
     /**
+     * The price per square meter when buying/purchasing the property. livingArea for apartments/houses, plotArea for land, otherwise null.
+     */
+    purchasingPricePerM2: number | null;
+    /**
      * The monthly rent/lease of the property. The lessee is expected to pay this amount every month to the landlord. => Landlord stays the owner of the property, but the lessee gets the right to use the property. If the property is not for rent, this field should be null.
      */
     rent: number | null;
@@ -83,6 +87,10 @@ export interface RealEstateListing {
      * The previous rent. Can be used for price history.
      */
     previousRent: number | null;
+    /**
+     * The monthly rent per square meter of the property. livingArea for apartments/houses, plotArea for land, otherwise null.
+     */
+    rentPerM2: number | null;
     /**
      * The ISO 4217 currency code of the prices. (e.g. EUR, USD, GBP, etc.)
      */

@@ -25,8 +25,10 @@ Here is an example of a valid `RealEstateListing` object:
   "monetaryDetails": {
     "purchasingPrice": 169000,
     "previousPurchasingPrice": null,
+    "purchasingPricePerM2": 3520.83,
     "rent": null,
     "previousRent": null,
+    "rentPerM2": null,
     "currencyCode": "EUR",
     "isCommissionFree": true,
     "estMonthlyOperatingCosts": null
