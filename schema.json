@@ -67,10 +67,7 @@
         },
         "postalCode": {
           "type": ["string", "null"],
-          "description": "An alphanumeric string included in a postal address to facilitate mail sorting (a.k.a. post code, postcode, or ZIP code). If the postal code is not available, this field should be null.",
-          "minLength": 4,
-          "maxLength": 4,
-          "pattern": "^[0-9]+$"
+          "description": "An alphanumeric string included in a postal address to facilitate mail sorting (a.k.a. post code, postcode, or ZIP code). If the postal code is not available, this field should be null."
         },
         "country": {
           "type": ["string", "null"],
