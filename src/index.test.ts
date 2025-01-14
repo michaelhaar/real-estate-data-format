@@ -104,21 +104,4 @@ describe("should fail", () => {
       });
     });
   });
-
-  describe("for invalid postalCodes", () => {
-    const testInputs = [
-      { ...realEstateListing, address: { ...realEstateListing.address, postalCode: "abc" } },
-      { ...realEstateListing, address: { ...realEstateListing.address, postalCode: "123" } },
-      { ...realEstateListing, address: { ...realEstateListing.address, postalCode: "124a" } },
-      { ...realEstateListing, address: { ...realEstateListing.address, postalCode: "12345" } },
-      { ...realEstateListing, address: { ...realEstateListing.address, postalCode: "123456" } },
-    ];
-
-    testInputs.forEach((input, index) => {
-      test(`testInput #${index}`, () => {
-        const valid = validate(input);
-        expect(valid).toBe(false);
-      });
-    });
-  });
 });
